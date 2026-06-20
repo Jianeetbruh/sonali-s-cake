@@ -1,0 +1,1349 @@
+export default {
+  async fetch(request) {
+    return new Response(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonali Cake's – Freshly Baked Cakes in Mahalunge, Pune</title>
+  <meta name="description" content="Sonali Cake's – Women-owned bakery in Mahalunge, Pune. Freshly baked authentic and super tasty cakes served with passion and love. 4.9★ rated." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink:       #f4a7b9;
+      --pink-dark:  #e07a96;
+      --pink-light: #fde8ef;
+      --cream:      #fdf6ec;
+      --cream-dark: #f5e6d0;
+      --brown:      #6b3a2a;
+      --brown-mid:  #9b5e3e;
+      --brown-light:#c8896a;
+      --gold:       #d4a843;
+      --gold-light: #f0d080;
+      --text-dark:  #3a1f10;
+      --text-mid:   #6b4c3b;
+      --text-light: #a07060;
+      --white:      #ffffff;
+      --shadow:     0 4px 24px rgba(107,58,42,0.12);
+      --shadow-lg:  0 8px 40px rgba(107,58,42,0.18);
+      --radius:     16px;
+      --radius-sm:  8px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--pink-dark); border-radius: 3px; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(253,246,236,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--cream-dark);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 12px rgba(107,58,42,0.08);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .logo-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink) 0%, var(--gold) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .nav-logo span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--brown);
+    }
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--text-mid);
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--pink-dark); }
+    .nav-cta {
+      background: var(--pink-dark);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 24px;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--brown) !important; transform: translateY(-1px); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--brown); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--cream); z-index: 999;
+      padding: 20px 5% 28px;
+      border-bottom: 2px solid var(--cream-dark);
+      box-shadow: var(--shadow);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block; padding: 12px 0;
+      font-size: 1rem; font-weight: 700;
+      color: var(--text-mid);
+      border-bottom: 1px solid var(--cream-dark);
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      background: var(--cream);
+      display: flex; align-items: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-decor {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+    }
+    .hero-bg-decor .circle1 {
+      position: absolute; top: -120px; right: -120px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, var(--pink-light) 0%, transparent 70%);
+      opacity: 0.7;
+    }
+    .hero-bg-decor .circle2 {
+      position: absolute; bottom: -80px; left: -80px;
+      width: 350px; height: 350px; border-radius: 50%;
+      background: radial-gradient(circle, var(--cream-dark) 0%, transparent 70%);
+    }
+    .hero-bg-decor .dots {
+      position: absolute; top: 20%; right: 5%;
+      width: 200px; height: 200px;
+      background-image: radial-gradient(circle, var(--pink) 1.5px, transparent 1.5px);
+      background-size: 20px 20px;
+      opacity: 0.3;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pink-light);
+      border: 1px solid var(--pink);
+      border-radius: 24px;
+      padding: 6px 16px;
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--brown);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .hero-badge .star { color: var(--gold); font-size: 1rem; }
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--brown);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .hero-title .hindi {
+      display: block;
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--brown-light);
+      font-style: italic;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      color: var(--text-mid);
+      margin: 20px 0 36px;
+      line-height: 1.7;
+      max-width: 480px;
+    }
+    .hero-tagline em { color: var(--pink-dark); font-style: normal; font-weight: 700; }
+    .hero-btns {
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--pink-dark);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 32px;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.5px;
+      border: none; cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(224,122,150,0.35);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(107,58,42,0.3); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--brown);
+      padding: 14px 32px;
+      border-radius: 32px;
+      font-size: 1rem; font-weight: 700;
+      border: 2px solid var(--brown-light);
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover { background: var(--cream-dark); border-color: var(--brown); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 40px;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700;
+      color: var(--brown);
+    }
+    .hero-stat .lbl {
+      font-size: 0.78rem; color: var(--text-light);
+      text-transform: uppercase; letter-spacing: 0.8px;
+    }
+    .hero-visual {
+      position: relative; display: flex; justify-content: center; align-items: center;
+    }
+    .hero-cake-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+      max-width: 380px; width: 100%;
+    }
+    .hero-cake-emoji {
+      font-size: 7rem; line-height: 1;
+      margin-bottom: 16px;
+      display: block;
+      filter: drop-shadow(0 8px 16px rgba(107,58,42,0.2));
+    }
+    .hero-cake-card h3 {
+      font-size: 1.3rem; color: var(--brown); margin-bottom: 8px;
+    }
+    .hero-cake-card p {
+      font-size: 0.9rem; color: var(--text-light);
+    }
+    .floating-tag {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow);
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; font-weight: 700;
+    }
+    .floating-tag.tag1 { top: -16px; right: -20px; color: var(--brown); }
+    .floating-tag.tag2 { bottom: -16px; left: -20px; color: var(--brown); }
+    .floating-tag .icon { font-size: 1.2rem; }
+
+    /* ===== SECTION COMMON ===== */
+    section { padding: 80px 5%; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--pink-dark);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--brown);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--text-mid);
+      max-width: 560px; line-height: 1.7;
+    }
+    .divider {
+      width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--pink-dark), var(--gold));
+      border-radius: 2px;
+      margin: 16px 0 32px;
+    }
+
+    /* ===== ABOUT ===== */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-main-card {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .about-main-card .big-emoji { font-size: 5rem; margin-bottom: 16px; display: block; }
+    .about-main-card h3 { font-size: 1.4rem; color: var(--brown); margin-bottom: 8px; }
+    .about-main-card p { font-size: 0.9rem; color: var(--text-mid); }
+    .about-badge-float {
+      position: absolute; top: -16px; right: -16px;
+      background: var(--pink-dark);
+      color: var(--white);
+      border-radius: 50%;
+      width: 80px; height: 80px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; text-align: center;
+      box-shadow: var(--shadow);
+      line-height: 1.3;
+    }
+    .about-badge-float .big { font-size: 1.3rem; font-weight: 700; }
+    .about-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;
+    }
+    .about-feature {
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .about-feature .icon { font-size: 1.5rem; flex-shrink: 0; }
+    .about-feature h4 { font-size: 0.9rem; color: var(--brown); margin-bottom: 4px; }
+    .about-feature p { font-size: 0.8rem; color: var(--text-light); }
+    .about-text p { font-size: 1rem; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+    .about-text p strong { color: var(--brown); }
+    .women-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--pink-light);
+      border: 1px solid var(--pink);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-top: 8px;
+    }
+    .women-badge .icon { font-size: 1.5rem; }
+    .women-badge span { font-size: 0.9rem; font-weight: 700; color: var(--brown); }
+
+    /* ===== MENU ===== */
+    #menu { background: var(--cream); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 8px;
+    }
+    .cake-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .cake-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .cake-img {
+      height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cake-img .cake-emoji { filter: drop-shadow(0 4px 12px rgba(107,58,42,0.2)); }
+    .cake-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--gold);
+      color: var(--brown);
+      font-size: 0.72rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .cake-body { padding: 20px 22px 24px; }
+    .cake-body h3 { font-size: 1.15rem; color: var(--brown); margin-bottom: 8px; }
+    .cake-body p { font-size: 0.88rem; color: var(--text-light); margin-bottom: 16px; line-height: 1.6; }
+    .cake-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cake-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--brown);
+    }
+    .cake-price span { font-size: 0.85rem; color: var(--text-light); font-family: 'Lato', sans-serif; font-weight: 400; }
+    .btn-order {
+      background: var(--pink-light);
+      color: var(--pink-dark);
+      border: 1.5px solid var(--pink);
+      border-radius: 20px;
+      padding: 7px 18px;
+      font-size: 0.82rem; font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-order:hover { background: var(--pink-dark); color: var(--white); border-color: var(--pink-dark); }
+
+    /* ===== GALLERY ===== */
+    #gallery { background: var(--white); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .gallery-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: var(--cream-dark);
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-inner {
+      width: 100%; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+      transition: transform 0.3s;
+    }
+    .gallery-item:nth-child(1) .gallery-inner,
+    .gallery-item:nth-child(4) .gallery-inner { height: 240px; }
+    .gallery-item:hover .gallery-inner { transform: scale(1.04); }
+    .gallery-emoji { font-size: 3.5rem; filter: drop-shadow(0 4px 8px rgba(107,58,42,0.2)); }
+    .gallery-label {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--brown); background: rgba(253,246,236,0.9);
+      padding: 4px 12px; border-radius: 12px;
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: rgba(107,58,42,0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(107,58,42,0.12); }
+
+    /* ===== REVIEWS ===== */
+    #reviews { background: var(--cream); }
+    .rating-hero {
+      display: flex; align-items: center; gap: 24px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+    }
+    .rating-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 700;
+      color: var(--brown); line-height: 1;
+    }
+    .rating-stars { display: flex; gap: 4px; margin-bottom: 4px; }
+    .rating-stars span { font-size: 1.4rem; color: var(--gold); }
+    .rating-count { font-size: 0.9rem; color: var(--text-light); }
+    .rating-divider { width: 1px; height: 60px; background: var(--cream-dark); }
+    .rating-text h3 { font-size: 1.2rem; color: var(--brown); margin-bottom: 4px; }
+    .rating-text p { font-size: 0.9rem; color: var(--text-mid); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform 0.3s;
+    }
+    .review-card:hover { transform: translateY(-4px); }
+    .review-card::before {
+      content: '"';
+      position: absolute; top: 16px; right: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; color: var(--pink-light);
+      line-height: 1;
+    }
+    .review-stars { display: flex; gap: 3px; margin-bottom: 12px; }
+    .review-stars span { font-size: 1rem; color: var(--gold); }
+    .review-text {
+      font-size: 0.92rem; color: var(--text-mid);
+      line-height: 1.7; margin-bottom: 20px;
+      font-style: italic;
+    }
+    .reviewer {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .reviewer-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--white); flex-shrink: 0;
+    }
+    .reviewer-name { font-size: 0.9rem; font-weight: 700; color: var(--brown); }
+    .reviewer-date { font-size: 0.78rem; color: var(--text-light); }
+
+    /* ===== CONTACT ===== */
+    #contact { background: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .contact-info h3 { font-size: 1.3rem; color: var(--brown); margin-bottom: 24px; }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--pink-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .contact-item p, .contact-item a { font-size: 0.95rem; color: var(--text-dark); line-height: 1.5; }
+    .contact-item a:hover { color: var(--pink-dark); }
+    .contact-btns {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px;
+    }
+    .btn-call {
+      background: var(--brown);
+      color: var(--white);
+      padding: 13px 24px;
+      border-radius: 28px;
+      font-size: 0.9rem; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 14px rgba(107,58,42,0.25);
+    }
+    .btn-call:hover { background: var(--text-dark); transform: translateY(-2px); }
+    .btn-whatsapp {
+      background: #25D366;
+      color: var(--white);
+      padding: 13px 24px;
+      border-radius: 28px;
+      font-size: 0.9rem; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { background: #1da851; transform: translateY(-2px); }
+    .map-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 380px;
+    }
+    .map-container iframe {
+      width: 100%; height: 100%; border: none;
+    }
+    .hours-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      margin-top: 4px;
+    }
+    .hours-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4caf50;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--brown);
+      color: rgba(255,255,255,0.85);
+      padding: 48px 5% 28px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 28px;
+    }
+    .footer-brand .logo-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .footer-brand .logo-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .footer-brand .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.7); max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+    .social-btn:hover { background: var(--pink-dark); transform: translateY(-2px); }
+    .footer-col h4 {
+      font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      color: var(--white); margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.7);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--pink); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .footer-bottom .heart { color: var(--pink); }
+
+    /* ===== SCROLL TO TOP ===== */
+    #scrollTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--pink-dark);
+      color: var(--white);
+      border: none; cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+      display: none; align-items: center; justify-content: center;
+      transition: all 0.25s; z-index: 900;
+    }
+    #scrollTop.visible { display: flex; }
+    #scrollTop:hover { background: var(--brown); transform: translateY(-3px); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { order: -1; }
+      .hero-cake-card { max-width: 300px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 60px 4%; }
+      #hero { padding: 80px 4% 50px; }
+      .hero-stats { gap: 20px; }
+      .hero-btns { flex-direction: column; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      .about-features { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(1),
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .rating-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .rating-divider { display: none; }
+      .contact-btns { flex-direction: column; }
+      .btn-call, .btn-whatsapp { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-icon">🎂</div>
+    <span>Sonali Cake's</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#menu" onclick="closeMobile()">Menu</a>
+  <a href="#gallery" onclick="closeMobile()">Gallery</a>
+  <a href="#reviews" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact & Order</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg-decor">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="dots"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="star">★</span> 4.9 Rated · 77 Happy Customers
+      </div>
+      <h1 class="hero-title">
+        Sonali Cake's
+        <span class="hindi">सोनाली केक'स</span>
+      </h1>
+      <p class="hero-tagline">
+        Freshly baked <em>authentic</em> and super tasty cakes served with
+        <em>passion and love</em> — straight from our heart to your celebration.
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/919850976777?text=Hi%20Sonali%20Cake's!%20I%20would%20like%20to%20place%20a%20cake%20order%20%F0%9F%8E%82" class="btn-primary" target="_blank" rel="noopener">
+          🎂 Order Now
+        </a>
+        <a href="tel:+919850976777" class="btn-secondary">
+          📞 Call Us
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">4.9★</div>
+          <div class="lbl">Rating</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">77+</div>
+          <div class="lbl">Reviews</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">100%</div>
+          <div class="lbl">Fresh</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">♀</div>
+          <div class="lbl">Women-Owned</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-cake-card">
+        <span class="hero-cake-emoji">🎂</span>
+        <h3>Handcrafted with Love</h3>
+        <p>Every cake is baked fresh to order with premium ingredients</p>
+        <div class="floating-tag tag1">
+          <span class="icon">✨</span> Premium Quality
+        </div>
+        <div class="floating-tag tag2">
+          <span class="icon">📍</span> Mahalunge, Pune
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual">
+        <div class="about-main-card">
+          <span class="big-emoji">👩‍🍳</span>
+          <h3>Baked with Passion</h3>
+          <p>Every cake tells a story of love, craft, and dedication</p>
+        </div>
+        <div class="about-badge-float">
+          <span class="big">4.9</span>
+          <span>★ Stars</span>
+        </div>
+        <div class="about-features">
+          <div class="about-feature">
+            <span class="icon">🌸</span>
+            <div>
+              <h4>Women-Owned</h4>
+              <p>Proudly run by women</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <span class="icon">🥚</span>
+            <div>
+              <h4>Fresh Daily</h4>
+              <p>Baked fresh every day</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <span class="icon">🎨</span>
+            <div>
+              <h4>Custom Designs</h4>
+              <p>Personalized for you</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <span class="icon">💝</span>
+            <div>
+              <h4>Made with Love</h4>
+              <p>Passion in every bite</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">A Bakery Born from Passion</h2>
+        <div class="divider"></div>
+        <p>
+          <strong>Sonali Cake's</strong> is a proudly women-owned bakery nestled in the heart of
+          Mahalunge, Pune. Founded with a simple dream — to bring joy to every celebration through
+          the art of baking — we have grown into a beloved local institution known for our
+          <strong>authentic flavors and stunning cake designs</strong>.
+        </p>
+        <p>
+          We believe that every cake is more than just a dessert — it's a memory in the making.
+          From birthdays to weddings, anniversaries to baby showers, we craft each cake with
+          <strong>premium ingredients, fresh daily</strong>, and an unwavering commitment to quality.
+        </p>
+        <p>
+          Our specialty lies in blending <strong>traditional Indian flavors</strong> — like Mango Rabdi
+          and Shahi Rasmalai — with modern cake artistry, creating experiences that are truly one of a kind.
+        </p>
+        <div class="women-badge">
+          <span class="icon">🌸</span>
+          <span>Proudly Women-Owned & Operated Business</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section id="menu">
+  <div class="section-inner">
+    <span class="section-label">Our Specialties</span>
+    <h2 class="section-title">Popular Cakes</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Handcrafted with love using the finest ingredients. Each cake is made fresh to order.</p>
+    <div class="menu-grid" style="margin-top:36px;">
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+          <span class="cake-emoji">🥭</span>
+          <span class="cake-badge">Bestseller</span>
+        </div>
+        <div class="cake-body">
+          <h3>Mango Rabdi Cake</h3>
+          <p>A divine fusion of fresh Alphonso mango pulp layered with creamy rabdi, topped with saffron-infused cream and pistachio crumble.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹799 <span>/ 500g</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Mango%20Rabdi%20Cake%20%F0%9F%A5%AD" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">
+          <span class="cake-emoji">🍮</span>
+          <span class="cake-badge">Signature</span>
+        </div>
+        <div class="cake-body">
+          <h3>Shahi Rasmalai Cake</h3>
+          <p>A royal treat featuring soft rasmalai-soaked sponge, rose-cardamom cream, and a garnish of silver varq and dry fruits.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹899 <span>/ 500g</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Shahi%20Rasmalai%20Cake%20%F0%9F%8D%AE" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#efebe9,#d7ccc8);">
+          <span class="cake-emoji">🍫</span>
+          <span class="cake-badge">Fan Favourite</span>
+        </div>
+        <div class="cake-body">
+          <h3>Chocolate Butterscotch Cake</h3>
+          <p>Rich dark chocolate sponge layered with butterscotch cream, caramel drizzle, and crunchy praline bits for the perfect indulgence.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹699 <span>/ 500g</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Chocolate%20Butterscotch%20Cake%20%F0%9F%8D%AB" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
+          <span class="cake-emoji">🍓</span>
+          <span class="cake-badge">Seasonal</span>
+        </div>
+        <div class="cake-body">
+          <h3>Strawberry Fresh Cream</h3>
+          <p>Light vanilla sponge with fresh strawberry compote, whipped cream frosting, and whole strawberries — a classic crowd-pleaser.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹649 <span>/ 500g</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Strawberry%20Fresh%20Cream%20Cake%20%F0%9F%8D%93" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#fff8e1,#ffecb3);">
+          <span class="cake-emoji">🎂</span>
+          <span class="cake-badge">Custom</span>
+        </div>
+        <div class="cake-body">
+          <h3>Designer Birthday Cake</h3>
+          <p>Fully customized birthday cakes with your choice of flavor, theme, and decoration. Made to make your special day unforgettable.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹999+ <span>/ custom</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Custom%20Birthday%20Cake%20%F0%9F%8E%82" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-card">
+        <div class="cake-img" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7);">
+          <span class="cake-emoji">🌹</span>
+          <span class="cake-badge">Popular</span>
+        </div>
+        <div class="cake-body">
+          <h3>Red Velvet Delight</h3>
+          <p>Classic red velvet sponge with tangy cream cheese frosting, decorated with red velvet crumbs and edible rose petals.</p>
+          <div class="cake-footer">
+            <div class="cake-price">₹749 <span>/ 500g</span></div>
+            <a href="https://wa.me/919850976777?text=Hi!%20I%20want%20to%20order%20a%20Red%20Velvet%20Cake%20%F0%9F%8C%B9" class="btn-order" target="_blank">Order</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://wa.me/919850976777?text=Hi%20Sonali%20Cake's!%20Please%20share%20your%20full%20menu%20%F0%9F%8E%82" class="btn-primary" target="_blank" rel="noopener" style="display:inline-flex;">
+        🎂 View Full Menu on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="section-inner">
+    <span class="section-label">Our Creations</span>
+    <h2 class="section-title">Cake Gallery</h2>
+    <div class="divider"></div>
+    <p class="section-sub">A glimpse of the love and artistry that goes into every cake we create.</p>
+    <div class="gallery-grid" style="margin-top:36px;">
+      <div class="gallery-item" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);">
+        <div class="gallery-inner">
+          <span class="gallery-emoji">🎂</span>
+          <span class="gallery-label">Birthday Cakes</span>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);">
+        <div class="gallery-inner">
+          <span class="gallery-emoji">💍</span>
+          <span class="gallery-label">Wedding Cakes</span>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);">
+        <div class="gallery-inner">
+          <span class="gallery-emoji">🍰</span>
+          <span class="gallery-label">Pastries</span>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#efebe9,#d7ccc8);">
+        <div class="gallery-inner">
+          <span class="gallery-emoji">🍫</span>
+          <span class="gallery-label">Chocolate Cakes</span>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+      <div class="gallery-item" style="background:linear-gradient(135deg,#fff8e1,#ffecb3);">
+        <div class="gallery-inner">
+          <span class="gallery-emoji">🌸</span>
+          <span class="gallery-label">Floral Decor</span>
+        </div>
+        <div class="gallery-overlay"></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="https://wa.me/919850976777?text=Hi!%20Can%20I%20see%20more%20of%20your%20cake%20photos%3F%20%F0%9F%93%B8" class="btn-secondary" target="_blank" rel="noopener" style="display:inline-flex;">
+        📸 See More on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section id="reviews">
+  <div class="section-inner">
+    <span class="section-label">Customer Love</span>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="divider"></div>
+
+    <div class="rating-hero">
+      <div class="rating-big">4.9</div>
+      <div>
+        <div class="rating-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <div class="rating-count">Based on 77 Google Reviews</div>
+      </div>
+      <div class="rating-divider"></div>
+      <div class="rating-text">
+        <h3>Loved by Pune 💕</h3>
+        <p>Consistently rated 5 stars for taste, freshness, and beautiful designs</p>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">
+          "Absolutely amazing cake! The Mango Rabdi cake was out of this world — the flavors were so authentic and the presentation was stunning. Everyone at the party loved it. Will definitely order again!"
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:var(--brown-mid);">CK</div>
+          <div>
+            <div class="reviewer-name">Chetan Kothawade</div>
+            <div class="reviewer-date">Google Review · 5 stars</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">
+          "Best cake shop in Mahalunge! Ordered a custom birthday cake and it was exactly what I imagined — beautiful design, super moist, and tasted heavenly. The team is so warm and professional."
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:var(--pink-dark);">TK</div>
+          <div>
+            <div class="reviewer-name">Tanuja Kamathe</div>
+            <div class="reviewer-date">Google Review · 5 stars</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">
+          "The Shahi Rasmalai cake was a dream! I've never tasted anything like it — the rasmalai flavor was perfectly balanced and the cake was so fresh. Sonali Cake's is truly special. Highly recommend!"
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:var(--gold);">NS</div>
+          <div>
+            <div class="reviewer-name">Niharika Sonawane</div>
+            <div class="reviewer-date">Google Review · 5 stars</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="review-text">
+          "Ordered a Chocolate Butterscotch cake for my daughter's birthday. The cake was fresh, beautifully decorated, and tasted incredible. The whole family was impressed. Thank you Sonali Cake's! 🎂"
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar" style="background:var(--brown-light);">SP</div>
+          <div>
+            <div class="reviewer-name">Sunita Patil</div>
+            <div class="reviewer-date">Google Review · 5 stars</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-label">Find Us</span>
+    <h2 class="section-title">Visit or Contact Us</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>We'd love to hear from you!</h3>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>Sawali Apartment, Behind ZP School,<br>Mahalunge, Pune – 411045,<br>Maharashtra, India</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+919850976777">098509 76777</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Opening Hours</h4>
+            <p>Open Daily</p>
+            <div class="hours-badge">
+              <span class="dot"></span>
+              Closes at 11:00 PM
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <h4>Find Us Online</h4>
+            <a href="https://maps.app.goo.gl/search?q=Sonali+Cakes+Mahalunge+Pune" target="_blank" rel="noopener">View on Google Maps</a>
+          </div>
+        </div>
+
+        <div class="contact-btns">
+          <a href="tel:+919850976777" class="btn-call">
+            📞 Call Now
+          </a>
+          <a href="https://wa.me/919850976777?text=Hi%20Sonali%20Cake's!%20I%20would%20like%20to%20place%20a%20cake%20order%20%F0%9F%8E%82%20Please%20share%20your%20menu%20and%20availability." class="btn-whatsapp" target="_blank" rel="noopener">
+            💬 WhatsApp Us
+          </a>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.0!2d73.7!3d18.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSonali+Cake%27s+Mahalunge+Pune!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sonali Cake's Location - Mahalunge, Pune">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-row">
+          <div class="logo-icon">🎂</div>
+          <span class="logo-name">Sonali Cake's</span>
+        </div>
+        <p>Freshly baked authentic and super tasty cakes served with passion and love. Women-owned bakery in Mahalunge, Pune.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919850976777" class="social-btn" target="_blank" rel="noopener" title="WhatsApp">💬</a>
+          <a href="tel:+919850976777" class="social-btn" title="Call Us">📞</a>
+          <a href="https://www.google.com/maps/search/Sonali+Cakes+Mahalunge+Pune" class="social-btn" target="_blank" rel="noopener" title="Google Maps">📍</a>
+          <a href="https://www.instagram.com/" class="social-btn" target="_blank" rel="noopener" title="Instagram">📸</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919850976777">📞 098509 76777</a></li>
+          <li><a href="https://wa.me/919850976777" target="_blank">💬 WhatsApp</a></li>
+          <li><a href="#contact">📍 Mahalunge, Pune</a></li>
+          <li><a href="#contact">🕐 Closes 11 PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Sonali Cake's · सोनाली केक'स · Mahalunge, Pune. All rights reserved.</p>
+      <p>Made with <span class="heart">❤️</span> for every celebration</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script>
+  // ===== HAMBURGER MENU =====
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // ===== SCROLL TO TOP =====
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ===== NAV SHADOW ON SCROLL =====
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.style.boxShadow = window.scrollY > 10
+      ? '0 4px 24px rgba(107,58,42,0.14)'
+      : '0 2px 12px rgba(107,58,42,0.08)';
+  });
+
+  // ===== SMOOTH ACTIVE NAV LINKS =====
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--pink-dark)' : '';
+    });
+  });
+
+  // ===== INTERSECTION OBSERVER ANIMATIONS =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.cake-card, .review-card, .gallery-item, .about-feature').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+<!-- ===== PREVIEW WATERMARK ===== -->
+<style>
+  .preview-watermark-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 60px;
+  }
+  .preview-watermark-overlay span {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: rgba(107, 58, 42, 0.16);
+    transform: rotate(-30deg);
+    white-space: nowrap;
+    user-select: none;
+  }
+  .preview-banner {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100000;
+    background: rgba(58, 31, 16, 0.92);
+    color: #fff;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    pointer-events: none;
+  }
+</style>
+<div class="preview-banner">PREVIEW VERSION · Not for public use · Contact developer for the final deploy-ready site</div>
+<div class="preview-watermark-overlay" aria-hidden="true">
+  <script>
+    (function() {
+      const overlay = document.currentScript.parentElement;
+      for (let i = 0; i < 40; i++) {
+        const s = document.createElement('span');
+        s.textContent = "PREVIEW · SONALI CAKE'S";
+        overlay.appendChild(s);
+      }
+    })();
+  </script>
+</div>
+
+</body>
+</html>
+`, {
+      headers: { "content-type": "text/html;charset=UTF-8" },
+    });
+  },
+};
